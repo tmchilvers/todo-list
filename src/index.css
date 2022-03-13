@@ -1,13 +1,371 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ================================================================== */
+/*                               GLOBAL                               */
+/* ================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*:focus {
+  outline: none;
+  outline-offset: 0;
+}
+
+html {
+  font: 62.5% / 1.15 sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  background: white;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+body {
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  font: 1.6rem/1.25 'Dosis', sans-serif;
+  background-color: #f1f2f6;
+  color: #92929a;
+}
+
+@media screen and (min-width: 620px) {
+  body {
+    font-size: 1.9rem;
+    line-height: 1.31579;
+  }
+}
+
+.btn {
+  cursor: pointer;
+}
+
+/* ================================================================== */
+/*                               MAIN                                 */
+/* ================================================================== */
+
+.title{
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.wrapper {
+  position:relative;
+  width:100%;
+}
+
+.todo-app {
+  background: #fff;
+  border-radius: 1.5rem;  
+  margin: 1rem 0 6rem 0;
+  padding: 3.5rem 2rem 3rem 2rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(117, 117, 117, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.back-block {
+  background: #fff;
+  border-radius: 1.5rem;  
+  width: 100%;
+  height: 100%;
+  padding-right: 34rem;
+  padding-left: 34rem;
+  padding-top: 54rem;
+  position: absolute;
+  box-shadow: 0 0.5rem 1rem 0 rgba(63, 63, 63, 0.2), 0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1); 
+}
+
+.block-1 {
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  top: 0.5rem;
+  left: -2rem;
+}
+
+.block-2 {
+  -webkit-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  top: 0.5rem;  
+  left: 2rem;
+}
+
+
+/* ================================================================== */
+/*                               FORM                                 */
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/*                               Input                                */
+
+.form-task {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  align-items: center;
+}
+
+#input-task {
+  width: 90%;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  background-color: #f1f2f6;
+  display: inline-block;
+  box-shadow: inset 0 0rem 0.6rem 0.05rem #dfe1e6;  
+}
+
+#input-task::placeholder {
+  color: #a8a9ad;
+}
+
+/* ------------------------------------------------------------------ */
+/*                             Add Button                             */
+
+.form-task #btn-add {
+  border: none;
+  padding: 0 0 0 2.5rem;
+  display: inline-block;
+  opacity: 0.5; 
+}
+
+.form-task #btn-add:hover {
+  opacity: 1; 
+}
+
+/* ================================================================== */
+/*                              SEARCH                                */
+/* ================================================================== */
+
+.search-task {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.search-task #label-search {
+  display: inline-block;
+  padding: 1.5rem;
+  padding-right: 3rem;
+}
+
+.search-task #input-search {
+  padding: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  background-color: #f1f2f6;
+  display: inline-block;
+  box-shadow: inset 0 0rem 0.6rem 0.05rem #dfe1e6; 
+  width: 40%;
+}
+
+/* ================================================================== */
+/*                               TASKS                                */
+/* ================================================================== */
+
+.task {
+  border: 0.1rem solid #dee0e4;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  align-items: center;  
+  padding: 1rem;
+  padding-bottom: 1.25rem;
+  background-color: white;  
+}
+
+/* ------------------------------------------------------------------ */
+/*                             Check Box                              */
+
+/* Hide the default checkbox so that we can create our own style*/
+.task input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Checkbox unchecked and not hovered */
+.task-checkbox {
+  position: relative;
+  left: 0;
+  height: 2.25rem;
+  width: 2.25rem;
+  background-color: white;
+  border: 0.1rem solid #adadb9;
+  display: inline-block;
+  vertical-align: middle;  
+  border-radius: 100%;
+  margin: 0 1.25rem 0 1rem;
+}
+
+/* Checkbox unchecked and hovered */
+.task input ~ .task-checkbox:hover {
+  background-color: #f1f2f6;
+}
+
+/* Checkbox checked and not hovered */
+.task input:checked ~ .task-checkbox {
+  background-color: #366ce7;
+}
+
+/* Create custom check mark*/
+.task-checkbox:after {
+  content: "";
+  position: relative;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.task input:checked ~ .task-checkbox:after {
+  display: block;
+}
+
+/* Style the checkmark */
+.task .task-checkbox:after {
+  margin: auto;
+  top: 0.25rem;
+  width: 0.5rem;
+  height: 1.15rem;
+  border: solid white;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
+
+
+
+/* ------------------------------------------------------------------ */
+/*                             Task Label                             */
+
+.task .label-task {
+  width: 100%;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;   
+  max-width: 53rem;
+  color: black;
+}
+
+/* Slash the label when checkmark is checked */
+.task input:checked ~ .label-task {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* ------------------------------------------------------------------ */
+/*                           Delete Button                            */
+
+.task #btn-delete {
+  border: none;
+  padding: 0 0 0 1.5rem;
+  display: inline-block;
+  vertical-align: middle;  
+  opacity: 0; 
+}
+
+.task:hover #btn-delete {
+  opacity: 0.5;
+}
+
+.task #btn-delete:hover {
+  opacity: 1;
+}
+
+/* ================================================================== */
+/*                               FILTER                               */
+/* ================================================================== */
+
+.bottom {
+  border-top: 0.1rem solid #dee0e4;
+  overflow: hidden;
+  align-items: center;  
+  padding: 1rem;
+  padding-bottom: 1.25rem;  
+  margin-top: 8rem;
+}
+
+.bottom #task-left {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 18rem;
+  width: 100%;
+}
+
+.bottom .filter-task {
+  display: inline-block;
+  vertical-align: middle;
+  border: 0.1rem solid #dee0e4;  
+  border-radius: 0.5rem;  
+}
+
+.bottom .filter-task #btn-filter {
+  padding: 1.25rem;
+  padding-left: 2rem;
+  padding-right: 2rem;   
+}
+
+.bottom .filter-task #btn-filter:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.bottom .filter-task .btn-noborder {
+  border: none;
+}
+
+.bottom .filter-task .btn-border {
+  border: none;
+  border-right: 0.1rem solid #dee0e4;
+  border-radius: 0;
+}
+
+.bottom #btn-clear {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4.35rem;
+  border: 0.1rem solid #dee0e4;  
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.bottom #btn-clear:hover {
+  background-color: #f1f2f6;
+  border-radius: 0.5rem;
+  color: black;
+  text-decoration: underline;
+}
+
+.bottom .btn[aria-pressed="true"] {
+  background-color: #f1f2f6;
+  border-radius: 0.5rem;
+  color: black;  
 }
