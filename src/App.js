@@ -238,10 +238,6 @@ function App(props) {
   //                              HTML Block
   return (
     <fragment className="wrapper">
-      {/* Background blocks for aesthetics */}
-      <div className="back-block block-1"></div>
-      <div className="back-block block-2"></div>      
-
       {/* Main App */}
       <div className="todo-app">
 
@@ -312,6 +308,9 @@ function App(props) {
 
         </div>      
       </div>
+      {/* Background blocks for aesthetics */}
+      <div className="back-block block-1"></div>
+      <div className="back-block block-2"></div>      
     </fragment>
   );
 }
